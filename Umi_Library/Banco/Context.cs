@@ -13,7 +13,7 @@ namespace Biblioteca.Banco
     {
         public DbSet<classCliente> Cliente { get; set; }
 
-        public string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Umi;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UmiSGBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connection);
