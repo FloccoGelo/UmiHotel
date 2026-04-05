@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Umi_Library.teste
 {
-    internal class Class1Teste
+    internal class testeClass1Teste
     {
     }
 }
