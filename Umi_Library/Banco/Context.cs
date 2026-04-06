@@ -12,6 +12,7 @@ namespace Biblioteca.Banco
     public class Context : DbContext
     {
         public DbSet<classCliente> Cliente { get; set; }
+        public DbSet<classQuarto> Quarto { get; set; }
 
         public string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UmiSGBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

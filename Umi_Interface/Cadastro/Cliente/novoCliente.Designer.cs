@@ -63,7 +63,7 @@
             textOBS = new TextBox();
             tableLinha5 = new TableLayoutPanel();
             labelAtivo = new Label();
-            comboAtivo = new ComboBox();
+            
             labelCreated = new Label();
             dateCreated = new DateTimePicker();
             dateModified = new DateTimePicker();
@@ -151,6 +151,7 @@
             btnVoltar.TabIndex = 2;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = false;
+            btnVoltar.Click += btnVoltar_Click;
             // 
             // tableForm
             // 
@@ -494,7 +495,6 @@
             tableLinha5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
             tableLinha5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
             tableLinha5.Controls.Add(labelAtivo, 1, 0);
-            tableLinha5.Controls.Add(comboAtivo, 1, 1);
             tableLinha5.Controls.Add(labelCreated, 2, 0);
             tableLinha5.Controls.Add(dateCreated, 2, 1);
             tableLinha5.Controls.Add(dateModified, 3, 1);
@@ -519,18 +519,6 @@
             labelAtivo.Size = new Size(104, 15);
             labelAtivo.TabIndex = 0;
             labelAtivo.Text = "Ativo:";
-            // 
-            // comboAtivo
-            // 
-            comboAtivo.Dock = DockStyle.Fill;
-            comboAtivo.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboAtivo.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboAtivo.FormattingEnabled = true;
-            comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
-            comboAtivo.Location = new Point(340, 30);
-            comboAtivo.Name = "comboAtivo";
-            comboAtivo.Size = new Size(104, 23);
-            comboAtivo.TabIndex = 1;
             // 
             // labelCreated
             // 

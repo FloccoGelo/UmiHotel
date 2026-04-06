@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             btnCliente = new Button();
+            btnQuarto = new Button();
             SuspendLayout();
             // 
             // btnCliente
             // 
             btnCliente.BackColor = Color.DarkSeaGreen;
-            btnCliente.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnCliente.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnCliente.ForeColor = SystemColors.ControlText;
             btnCliente.Location = new Point(73, 319);
             btnCliente.Name = "btnCliente";
@@ -44,11 +45,25 @@
             btnCliente.UseVisualStyleBackColor = false;
             btnCliente.Click += btnCliente_Click;
             // 
+            // btnQuarto
+            // 
+            btnQuarto.BackColor = Color.FromArgb(255, 192, 128);
+            btnQuarto.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQuarto.ForeColor = SystemColors.ControlText;
+            btnQuarto.Location = new Point(223, 319);
+            btnQuarto.Name = "btnQuarto";
+            btnQuarto.Size = new Size(152, 67);
+            btnQuarto.TabIndex = 1;
+            btnQuarto.Text = "Quartos";
+            btnQuarto.UseVisualStyleBackColor = false;
+            btnQuarto.Click += btnQuarto_Click;
+            // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnQuarto);
             Controls.Add(btnCliente);
             Name = "Inicio";
             Text = "Form1";
@@ -58,5 +73,6 @@
         #endregion
 
         private Button btnCliente;
+        private Button btnQuarto;
     }
 }

@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="classCliente" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-  <TypeInfo>Umi_Library.Class.classCliente, Umi_Library, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="classQuarto" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+  <TypeInfo>Umi_Library.Class.classQuarto, Umi_Library, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

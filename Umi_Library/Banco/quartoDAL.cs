@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umi_Library.teste
+namespace Umi_Library.Banco
 {
-    internal class testeClass1Teste
+    internal class quartoDAL
     {
     }
 }
