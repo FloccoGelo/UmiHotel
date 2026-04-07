@@ -16,14 +16,14 @@ namespace Umi_Library.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Numero = table.Column<int>(type: "int", nullable: false),
+                    Numero = table.Column<int>(type: "varchar(15)", nullable: false),
                     Tipo = table.Column<string>(type: "varchar(20)", nullable: true),
                     Capacidade = table.Column<int>(type: "int", nullable: false),
                     NumSolt = table.Column<int>(type: "int", nullable: false),
                     NumCasal = table.Column<int>(type: "int", nullable: false),
                     PrecoBase = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PrecoAtual = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    Ativo = table.Column<bool>(type: "varchar(5)", nullable: false),
                     Status = table.Column<string>(type: "varchar(20)", nullable: true),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

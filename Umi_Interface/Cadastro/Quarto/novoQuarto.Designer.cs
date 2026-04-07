@@ -58,6 +58,7 @@ namespace Umi_Interface.Cadastro.Quarto
             maskValAtual = new MaskedTextBox();
             labelStatus = new Label();
             comboStatus = new ComboBox();
+            comboAtivo = new ComboBox();
             tableLinha4 = new TableLayoutPanel();
             labelCreated = new Label();
             dateCreated = new DateTimePicker();
@@ -374,6 +375,7 @@ namespace Umi_Interface.Cadastro.Quarto
             tableLinha3.Controls.Add(labelStatus, 2, 0);
             tableLinha3.Controls.Add(comboStatus, 2, 1);
             tableLinha3.Controls.Add(labelAtivo, 3, 0);
+            tableLinha3.Controls.Add(comboAtivo, 3, 1);
             tableLinha3.Dock = DockStyle.Fill;
             tableLinha3.Location = new Point(33, 199);
             tableLinha3.Name = "tableLinha3";
@@ -449,6 +451,16 @@ namespace Umi_Interface.Cadastro.Quarto
             comboStatus.Size = new Size(150, 23);
             comboStatus.TabIndex = 5;
             // 
+            // comboAtivo
+            // 
+            comboAtivo.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboAtivo.FormattingEnabled = true;
+            comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
+            comboAtivo.Location = new Point(393, 30);
+            comboAtivo.Name = "comboAtivo";
+            comboAtivo.Size = new Size(111, 23);
+            comboAtivo.TabIndex = 7;
+            // 
             // tableLinha4
             // 
             tableLinha4.BackColor = Color.FromArgb(192, 255, 255);
@@ -483,6 +495,7 @@ namespace Umi_Interface.Cadastro.Quarto
             // dateCreated
             // 
             dateCreated.Dock = DockStyle.Fill;
+            dateCreated.Enabled = false;
             dateCreated.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateCreated.Format = DateTimePickerFormat.Short;
             dateCreated.Location = new Point(3, 30);
@@ -504,6 +517,7 @@ namespace Umi_Interface.Cadastro.Quarto
             // dateModified
             // 
             dateModified.CalendarFont = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateModified.Enabled = false;
             dateModified.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateModified.Format = DateTimePickerFormat.Short;
             dateModified.Location = new Point(128, 30);
@@ -578,7 +592,6 @@ namespace Umi_Interface.Cadastro.Quarto
         private Label labelValorBase;
         private MaskedTextBox maskValBase;
         private Label labelValAtual;
-        private MaskedTextBox maskValAtual;
         private Label labelStatus;
         private ComboBox comboStatus;
         private Label labelAtivo;
@@ -586,5 +599,7 @@ namespace Umi_Interface.Cadastro.Quarto
         private DateTimePicker dateCreated;
         private Label labelModified;
         private DateTimePicker dateModified;
+        private MaskedTextBox maskValAtual;
+        private ComboBox comboAtivo;
     }
 }

@@ -63,7 +63,6 @@
             textOBS = new TextBox();
             tableLinha5 = new TableLayoutPanel();
             labelAtivo = new Label();
-            
             labelCreated = new Label();
             dateCreated = new DateTimePicker();
             dateModified = new DateTimePicker();
@@ -648,7 +647,6 @@
         private ComboBox comboAtivo;
         private Label labelCreated;
         private DateTimePicker dateCreated;
-        
         private DateTimePicker dateModified;
         private Label labelModified;
         private BindingSource bsCliente;
