@@ -451,13 +451,13 @@ namespace Umi_Interface.Cadastro.Quarto
             comboStatus.Size = new Size(150, 23);
             comboStatus.TabIndex = 5;
             // 
-            // comboAtivo
+            // comboAtivo3
             // 
             comboAtivo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboAtivo.FormattingEnabled = true;
             comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
             comboAtivo.Location = new Point(393, 30);
-            comboAtivo.Name = "comboAtivo";
+            comboAtivo.Name = "comboAtivo3";
             comboAtivo.Size = new Size(111, 23);
             comboAtivo.TabIndex = 7;
             // 

@@ -33,7 +33,7 @@ public partial class novoCliente : Form
     }
     private void novoCliente_Load(object sender, EventArgs e)
     {
-        comboAtivo.SelectedIndex = 0;
+       comboAtivo.SelectedIndex = 0;
         if (_idEdicao > 0)
         {
             preencher();
@@ -42,7 +42,7 @@ public partial class novoCliente : Form
     // -----------------------------------------------------------------------------------------
     // ---------------------------------------------------------- GERAR CAMPOS 
     int codigo = 1;
-    bool resultAtivo;
+    string resultAtivo;
 
     private void gerarCodigo()
     {
@@ -56,16 +56,17 @@ public partial class novoCliente : Form
             codigo = ultimo + 1;
         }
     }
-    private void gerarAtivo()
+    private string gerarAtivo()
     {
         if (comboAtivo.Text == "Sim")
         {
-            resultAtivo = true;
+            resultAtivo = "s";
         }
         else
         {
-            resultAtivo = false;
+            resultAtivo = "n";
         }
+        return resultAtivo;
     }
 
     // -----------------------------------------------------------------------------------------
@@ -84,26 +85,59 @@ public partial class novoCliente : Form
             Telefone2 = textTell2.Text,
             Email = textEmail.Text,
 
-            Ativo = resultAtivo,
             Created = DateTime.Now,
             Modified = DateTime.Now,
+
+            
         };
+        novoCliente.Ativo = gerarAtivo();
         return novoCliente;
     }
 
+    private int verificar;
+    public int verificarObrigatorio()
+    {
+       if(
+         textNome.Text == "" || 
+         comboSexo.Text == "" ||
+            maskCPF.Text == "" ||
+            textTell1.Text == "" ||
+            dateNasc.Text == ""
+         )
+        {
+            verificar = 1;
+        }
+       return verificar;
+    }
+    
+    // -----------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------- BOTOES 
     private void btnSalvar_Click(object sender, EventArgs e)
     {
         // aqui ele valida se, bsCliente.Current tiver um classCliente carregado
         // se tiver um classCliente carregado, ele vai editar
         // se não tiver, ele vai adicionar um novo cliente
-
-        if (bsCliente.Current is classCliente cli)
+        if (verificarObrigatorio() == 1)
         {
+            MessageBox.Show(@"Há campos obrigatorios nao preenchidos
+                Verifique os seguintes campos:
+
+                Nome
+                Data de nascimento
+                Sexo
+                CPF
+                Telefone 01");
+
+            verificar = 0;
+        }
+        else if (bsCliente.Current is classCliente cli)
+        {
+            verificarObrigatorio();
+            cli.Ativo = gerarAtivo();
             cli.Modified = DateTime.Now;
             _Dal.Editar(cli);
-            MessageBox.Show("Cliente salvo com sucesso :)");
+            MessageBox.Show("Cliente editado com sucesso :)");
             this.Close();
-
         }
         else
         {
@@ -115,8 +149,15 @@ public partial class novoCliente : Form
         }
     }
 
+    private void btnVoltar_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
+
     // -----------------------------------------------------------------------------------------
     // ---------------------------------------------------------- PREENCHER CAMPOS 
+
+
 
     // isso aqui traz os dados da funçao BuscarID e passa ao bindingSource
     // limpa os bindings atuais
@@ -152,12 +193,19 @@ public partial class novoCliente : Form
         textOBS.DataBindings.Add("Text", bsCliente, "Observacoes");
         dateCreated.DataBindings.Add("Text", bsCliente, "Created");
         dateModified.DataBindings.Add("Text", bsCliente, "Modified");
+
+        comboAtivo.DataBindings.Add("Text", bsCliente, "Ativo");
+        if (editCli.Ativo == "s")
+        {
+            comboAtivo.Text = "Sim";
+        }
+        else
+        {
+            comboAtivo.Text = "Não";
+        };
     }
 
-    private void btnVoltar_Click(object sender, EventArgs e)
-    {
-        this.Close();
-    }
+
     // ------- FINAL TOTAL   
 }
 

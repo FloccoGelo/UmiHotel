@@ -67,6 +67,7 @@
             dateCreated = new DateTimePicker();
             dateModified = new DateTimePicker();
             labelModified = new Label();
+            comboAtivo = new ComboBox();
             labelTitulo = new Label();
             bsCliente = new BindingSource(components);
             tablePai.SuspendLayout();
@@ -498,6 +499,7 @@
             tableLinha5.Controls.Add(dateCreated, 2, 1);
             tableLinha5.Controls.Add(dateModified, 3, 1);
             tableLinha5.Controls.Add(labelModified, 3, 0);
+            tableLinha5.Controls.Add(comboAtivo, 1, 1);
             tableLinha5.Dock = DockStyle.Fill;
             tableLinha5.Location = new Point(33, 359);
             tableLinha5.Name = "tableLinha5";
@@ -562,6 +564,15 @@
             labelModified.Size = new Size(104, 15);
             labelModified.TabIndex = 6;
             labelModified.Text = "Modificado:";
+            // 
+            // comboAtivo
+            // 
+            comboAtivo.FormattingEnabled = true;
+            comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
+            comboAtivo.Location = new Point(340, 30);
+            comboAtivo.Name = "comboAtivo";
+            comboAtivo.Size = new Size(104, 23);
+            comboAtivo.TabIndex = 7;
             // 
             // labelTitulo
             // 
@@ -644,11 +655,11 @@
         private TextBox textOBS;
         private TableLayoutPanel tableLinha5;
         private Label labelAtivo;
-        private ComboBox comboAtivo;
         private Label labelCreated;
         private DateTimePicker dateCreated;
         private DateTimePicker dateModified;
         private Label labelModified;
         private BindingSource bsCliente;
+        private ComboBox comboAtivo;
     }
 }
