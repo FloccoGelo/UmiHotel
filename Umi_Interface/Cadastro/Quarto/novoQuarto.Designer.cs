@@ -43,11 +43,11 @@ namespace Umi_Interface.Cadastro.Quarto
             labelTipo = new Label();
             comboTipo = new ComboBox();
             labelCapac = new Label();
-            textCapac = new TextBox();
             labelCamSolt = new Label();
-            textCamSolt = new TextBox();
             labelCamCasal = new Label();
-            textCamCasal = new TextBox();
+            numericCapacidade = new NumericUpDown();
+            numericSolteiro = new NumericUpDown();
+            numericCasal = new NumericUpDown();
             tableLinha2 = new TableLayoutPanel();
             labelDescri = new Label();
             textDescricao = new TextBox();
@@ -70,6 +70,9 @@ namespace Umi_Interface.Cadastro.Quarto
             tableButton.SuspendLayout();
             tableForm.SuspendLayout();
             tableLinha1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericCapacidade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericSolteiro).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericCasal).BeginInit();
             tableLinha2.SuspendLayout();
             tableLinha3.SuspendLayout();
             tableLinha4.SuspendLayout();
@@ -200,11 +203,11 @@ namespace Umi_Interface.Cadastro.Quarto
             tableLinha1.Controls.Add(labelTipo, 1, 0);
             tableLinha1.Controls.Add(comboTipo, 1, 1);
             tableLinha1.Controls.Add(labelCapac, 2, 0);
-            tableLinha1.Controls.Add(textCapac, 2, 1);
             tableLinha1.Controls.Add(labelCamSolt, 3, 0);
-            tableLinha1.Controls.Add(textCamSolt, 3, 1);
             tableLinha1.Controls.Add(labelCamCasal, 4, 0);
-            tableLinha1.Controls.Add(textCamCasal, 4, 1);
+            tableLinha1.Controls.Add(numericCapacidade, 2, 1);
+            tableLinha1.Controls.Add(numericSolteiro, 3, 1);
+            tableLinha1.Controls.Add(numericCasal, 4, 1);
             tableLinha1.Dock = DockStyle.Fill;
             tableLinha1.Location = new Point(33, 28);
             tableLinha1.Name = "tableLinha1";
@@ -231,6 +234,7 @@ namespace Umi_Interface.Cadastro.Quarto
             textNumero.Dock = DockStyle.Fill;
             textNumero.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textNumero.Location = new Point(3, 30);
+            textNumero.MaxLength = 15;
             textNumero.Name = "textNumero";
             textNumero.Size = new Size(169, 21);
             textNumero.TabIndex = 1;
@@ -263,61 +267,72 @@ namespace Umi_Interface.Cadastro.Quarto
             labelCapac.AutoSize = true;
             labelCapac.Dock = DockStyle.Bottom;
             labelCapac.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelCapac.Location = new Point(353, 12);
+            labelCapac.Location = new Point(353, 0);
             labelCapac.Name = "labelCapac";
-            labelCapac.Size = new Size(99, 15);
+            labelCapac.Size = new Size(99, 27);
             labelCapac.TabIndex = 4;
-            labelCapac.Text = "Capacidade: *";
-            // 
-            // textCapac
-            // 
-            textCapac.BorderStyle = BorderStyle.FixedSingle;
-            textCapac.Dock = DockStyle.Fill;
-            textCapac.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textCapac.Location = new Point(353, 30);
-            textCapac.Name = "textCapac";
-            textCapac.Size = new Size(99, 21);
-            textCapac.TabIndex = 5;
+            labelCapac.Text = "max 6\rCapacidade: * ";
             // 
             // labelCamSolt
             // 
             labelCamSolt.AutoSize = true;
             labelCamSolt.Dock = DockStyle.Bottom;
             labelCamSolt.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelCamSolt.Location = new Point(458, 12);
+            labelCamSolt.Location = new Point(458, 0);
             labelCamSolt.Name = "labelCamSolt";
-            labelCamSolt.Size = new Size(99, 15);
+            labelCamSolt.Size = new Size(99, 27);
             labelCamSolt.TabIndex = 6;
-            labelCamSolt.Text = "Camas Solt: *";
-            // 
-            // textCamSolt
-            // 
-            textCamSolt.BorderStyle = BorderStyle.FixedSingle;
-            textCamSolt.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textCamSolt.Location = new Point(458, 30);
-            textCamSolt.Name = "textCamSolt";
-            textCamSolt.Size = new Size(99, 21);
-            textCamSolt.TabIndex = 7;
+            labelCamSolt.Text = "max 2 \rCamas Solt: *";
             // 
             // labelCamCasal
             // 
             labelCamCasal.AutoSize = true;
             labelCamCasal.Dock = DockStyle.Bottom;
             labelCamCasal.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelCamCasal.Location = new Point(563, 12);
+            labelCamCasal.Location = new Point(563, 0);
             labelCamCasal.Name = "labelCamCasal";
-            labelCamCasal.Size = new Size(101, 15);
+            labelCamCasal.Size = new Size(101, 27);
             labelCamCasal.TabIndex = 8;
-            labelCamCasal.Text = "Camas Casal: *";
+            labelCamCasal.Text = "max 2\nCamas Casal: *";
             // 
-            // textCamCasal
+            // numericCapacidade
             // 
-            textCamCasal.BorderStyle = BorderStyle.FixedSingle;
-            textCamCasal.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textCamCasal.Location = new Point(563, 30);
-            textCamCasal.Name = "textCamCasal";
-            textCamCasal.Size = new Size(100, 21);
-            textCamCasal.TabIndex = 9;
+            numericCapacidade.BorderStyle = BorderStyle.FixedSingle;
+            numericCapacidade.Dock = DockStyle.Fill;
+            numericCapacidade.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numericCapacidade.Location = new Point(353, 30);
+            numericCapacidade.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+            numericCapacidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericCapacidade.Name = "numericCapacidade";
+            numericCapacidade.Size = new Size(99, 21);
+            numericCapacidade.TabIndex = 9;
+            numericCapacidade.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericSolteiro
+            // 
+            numericSolteiro.BorderStyle = BorderStyle.FixedSingle;
+            numericSolteiro.Dock = DockStyle.Fill;
+            numericSolteiro.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numericSolteiro.Location = new Point(458, 30);
+            numericSolteiro.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            numericSolteiro.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericSolteiro.Name = "numericSolteiro";
+            numericSolteiro.Size = new Size(99, 21);
+            numericSolteiro.TabIndex = 10;
+            numericSolteiro.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericCasal
+            // 
+            numericCasal.BorderStyle = BorderStyle.FixedSingle;
+            numericCasal.Dock = DockStyle.Fill;
+            numericCasal.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numericCasal.Location = new Point(563, 30);
+            numericCasal.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            numericCasal.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericCasal.Name = "numericCasal";
+            numericCasal.Size = new Size(101, 21);
+            numericCasal.TabIndex = 11;
+            numericCasal.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // tableLinha2
             // 
@@ -402,7 +417,9 @@ namespace Umi_Interface.Cadastro.Quarto
             maskValBase.Dock = DockStyle.Fill;
             maskValBase.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             maskValBase.Location = new Point(3, 30);
+            maskValBase.Mask = "00000";
             maskValBase.Name = "maskValBase";
+            maskValBase.PromptChar = ' ';
             maskValBase.Size = new Size(111, 21);
             maskValBase.TabIndex = 1;
             // 
@@ -423,7 +440,9 @@ namespace Umi_Interface.Cadastro.Quarto
             maskValAtual.Dock = DockStyle.Fill;
             maskValAtual.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             maskValAtual.Location = new Point(120, 30);
+            maskValAtual.Mask = "00000";
             maskValAtual.Name = "maskValAtual";
+            maskValAtual.PromptChar = ' ';
             maskValAtual.Size = new Size(111, 21);
             maskValAtual.TabIndex = 3;
             // 
@@ -451,13 +470,13 @@ namespace Umi_Interface.Cadastro.Quarto
             comboStatus.Size = new Size(150, 23);
             comboStatus.TabIndex = 5;
             // 
-            // comboAtivo3
+            // comboAtivo
             // 
             comboAtivo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboAtivo.FormattingEnabled = true;
             comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
             comboAtivo.Location = new Point(393, 30);
-            comboAtivo.Name = "comboAtivo3";
+            comboAtivo.Name = "comboAtivo";
             comboAtivo.Size = new Size(111, 23);
             comboAtivo.TabIndex = 7;
             // 
@@ -547,12 +566,16 @@ namespace Umi_Interface.Cadastro.Quarto
             Name = "novoQuarto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "novoCliente";
+            Load += novoQuarto_Load;
             tablePai.ResumeLayout(false);
             tablePai.PerformLayout();
             tableButton.ResumeLayout(false);
             tableForm.ResumeLayout(false);
             tableLinha1.ResumeLayout(false);
             tableLinha1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericCapacidade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericSolteiro).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericCasal).EndInit();
             tableLinha2.ResumeLayout(false);
             tableLinha2.PerformLayout();
             tableLinha3.ResumeLayout(false);
@@ -582,11 +605,8 @@ namespace Umi_Interface.Cadastro.Quarto
         private Label labelTipo;
         private ComboBox comboTipo;
         private Label labelCapac;
-        private TextBox textCapac;
         private Label labelCamSolt;
-        private TextBox textCamSolt;
         private Label labelCamCasal;
-        private TextBox textCamCasal;
         private Label labelDescri;
         private TextBox textDescricao;
         private Label labelValorBase;
@@ -601,5 +621,8 @@ namespace Umi_Interface.Cadastro.Quarto
         private DateTimePicker dateModified;
         private MaskedTextBox maskValAtual;
         private ComboBox comboAtivo;
+        private NumericUpDown numericCapacidade;
+        private NumericUpDown numericSolteiro;
+        private NumericUpDown numericCasal;
     }
 }

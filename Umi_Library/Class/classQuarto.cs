@@ -19,6 +19,6 @@ public class classQuarto
         public string Ativo { get; set; }
         public string? Status { get; set; }
         public string? Descricao { get; set; }
-        DateTime? created { get; set; }
-        DateTime? modified { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? Modified { get; set; }
 }

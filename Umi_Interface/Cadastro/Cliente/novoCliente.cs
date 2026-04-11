@@ -122,10 +122,10 @@ public partial class novoCliente : Form
             MessageBox.Show(@"Há campos obrigatorios nao preenchidos
                 Verifique os seguintes campos:
 
-                Nome
-                Data de nascimento
-                Sexo
-                CPF
+                Nome,
+                Data de nascimento,
+                Sexo,
+                CPF,
                 Telefone 01");
 
             verificar = 0;
