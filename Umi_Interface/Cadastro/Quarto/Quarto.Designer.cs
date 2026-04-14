@@ -32,20 +32,17 @@ namespace Umi_Interface.Cadastro.Quarto
             btnExcluir = new Button();
             btnVoltar = new Button();
             DataGrid = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             numeroDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             tipoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             capacidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            numSoltDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            numCasalDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             precoAtualDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Descricao = new DataGridViewTextBoxColumn();
-            classQuartoBindingSource = new BindingSource(components);
+            descricaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             bindingQuarto = new BindingSource(components);
             tablePai.SuspendLayout();
             tableBTN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGrid).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)classQuartoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingQuarto).BeginInit();
             SuspendLayout();
             // 
@@ -127,6 +124,7 @@ namespace Umi_Interface.Cadastro.Quarto
             btnEditar.TabIndex = 1;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -139,6 +137,7 @@ namespace Umi_Interface.Cadastro.Quarto
             btnExcluir.TabIndex = 2;
             btnExcluir.Text = "Excluir";
             btnExcluir.UseVisualStyleBackColor = false;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnVoltar
             // 
@@ -159,8 +158,8 @@ namespace Umi_Interface.Cadastro.Quarto
             DataGrid.AutoGenerateColumns = false;
             DataGrid.BackgroundColor = SystemColors.ButtonHighlight;
             DataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGrid.Columns.AddRange(new DataGridViewColumn[] { numeroDataGridViewTextBoxColumn, tipoDataGridViewTextBoxColumn, capacidadeDataGridViewTextBoxColumn, numSoltDataGridViewTextBoxColumn, numCasalDataGridViewTextBoxColumn, precoAtualDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, Descricao });
-            DataGrid.DataSource = classQuartoBindingSource;
+            DataGrid.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, numeroDataGridViewTextBoxColumn, tipoDataGridViewTextBoxColumn, capacidadeDataGridViewTextBoxColumn, precoAtualDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, descricaoDataGridViewTextBoxColumn });
+            DataGrid.DataSource = bindingQuarto;
             DataGrid.Location = new Point(38, 169);
             DataGrid.MultiSelect = false;
             DataGrid.Name = "DataGrid";
@@ -168,6 +167,16 @@ namespace Umi_Interface.Cadastro.Quarto
             DataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DataGrid.Size = new Size(839, 493);
             DataGrid.TabIndex = 2;
+            DataGrid.SelectionChanged += DataGrid_SelectionChanged;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
+            idDataGridViewTextBoxColumn.Visible = false;
             // 
             // numeroDataGridViewTextBoxColumn
             // 
@@ -175,7 +184,7 @@ namespace Umi_Interface.Cadastro.Quarto
             numeroDataGridViewTextBoxColumn.HeaderText = "Numero";
             numeroDataGridViewTextBoxColumn.Name = "numeroDataGridViewTextBoxColumn";
             numeroDataGridViewTextBoxColumn.ReadOnly = true;
-            numeroDataGridViewTextBoxColumn.Width = 80;
+            numeroDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // tipoDataGridViewTextBoxColumn
             // 
@@ -183,6 +192,7 @@ namespace Umi_Interface.Cadastro.Quarto
             tipoDataGridViewTextBoxColumn.HeaderText = "Tipo";
             tipoDataGridViewTextBoxColumn.Name = "tipoDataGridViewTextBoxColumn";
             tipoDataGridViewTextBoxColumn.ReadOnly = true;
+            tipoDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // capacidadeDataGridViewTextBoxColumn
             // 
@@ -190,23 +200,7 @@ namespace Umi_Interface.Cadastro.Quarto
             capacidadeDataGridViewTextBoxColumn.HeaderText = "Capacidade";
             capacidadeDataGridViewTextBoxColumn.Name = "capacidadeDataGridViewTextBoxColumn";
             capacidadeDataGridViewTextBoxColumn.ReadOnly = true;
-            capacidadeDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // numSoltDataGridViewTextBoxColumn
-            // 
-            numSoltDataGridViewTextBoxColumn.DataPropertyName = "NumSolt";
-            numSoltDataGridViewTextBoxColumn.HeaderText = "NumSolt";
-            numSoltDataGridViewTextBoxColumn.Name = "numSoltDataGridViewTextBoxColumn";
-            numSoltDataGridViewTextBoxColumn.ReadOnly = true;
-            numSoltDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // numCasalDataGridViewTextBoxColumn
-            // 
-            numCasalDataGridViewTextBoxColumn.DataPropertyName = "NumCasal";
-            numCasalDataGridViewTextBoxColumn.HeaderText = "NumCasal";
-            numCasalDataGridViewTextBoxColumn.Name = "numCasalDataGridViewTextBoxColumn";
-            numCasalDataGridViewTextBoxColumn.ReadOnly = true;
-            numCasalDataGridViewTextBoxColumn.Width = 75;
+            capacidadeDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // precoAtualDataGridViewTextBoxColumn
             // 
@@ -214,7 +208,7 @@ namespace Umi_Interface.Cadastro.Quarto
             precoAtualDataGridViewTextBoxColumn.HeaderText = "PrecoAtual";
             precoAtualDataGridViewTextBoxColumn.Name = "precoAtualDataGridViewTextBoxColumn";
             precoAtualDataGridViewTextBoxColumn.ReadOnly = true;
-            precoAtualDataGridViewTextBoxColumn.Width = 75;
+            precoAtualDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // statusDataGridViewTextBoxColumn
             // 
@@ -222,18 +216,16 @@ namespace Umi_Interface.Cadastro.Quarto
             statusDataGridViewTextBoxColumn.HeaderText = "Status";
             statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             statusDataGridViewTextBoxColumn.ReadOnly = true;
+            statusDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
-            // Descricao
+            // descricaoDataGridViewTextBoxColumn
             // 
-            Descricao.DataPropertyName = "Descricao";
-            Descricao.HeaderText = "Descricao";
-            Descricao.Name = "Descricao";
-            Descricao.ReadOnly = true;
-            Descricao.Width = 300;
-            // 
-            // classQuartoBindingSource
-            // 
-            classQuartoBindingSource.DataSource = typeof(Umi_Library.Class.classQuarto);
+            descricaoDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            descricaoDataGridViewTextBoxColumn.DataPropertyName = "Descricao";
+            descricaoDataGridViewTextBoxColumn.HeaderText = "Descricao";
+            descricaoDataGridViewTextBoxColumn.Name = "descricaoDataGridViewTextBoxColumn";
+            descricaoDataGridViewTextBoxColumn.ReadOnly = true;
+            descricaoDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // bindingQuarto
             // 
@@ -251,11 +243,11 @@ namespace Umi_Interface.Cadastro.Quarto
             Name = "Quarto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quarto";
+            Load += Quarto_Load;
             tablePai.ResumeLayout(false);
             tablePai.PerformLayout();
             tableBTN.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGrid).EndInit();
-            ((System.ComponentModel.ISupportInitialize)classQuartoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingQuarto).EndInit();
             ResumeLayout(false);
         }
@@ -271,14 +263,12 @@ namespace Umi_Interface.Cadastro.Quarto
         private Button btnExcluir;
         private Button btnVoltar;
         private BindingSource bindingQuarto;
-        private BindingSource classQuartoBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn numeroDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn tipoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn capacidadeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn numSoltDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn numCasalDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn precoAtualDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Descricao;
+        private DataGridViewTextBoxColumn descricaoDataGridViewTextBoxColumn;
     }
 }

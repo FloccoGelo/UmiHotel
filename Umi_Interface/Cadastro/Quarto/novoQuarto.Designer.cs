@@ -30,6 +30,7 @@ namespace Umi_Interface.Cadastro.Quarto
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Label labelAtivo;
             tablePai = new TableLayoutPanel();
             labelTitulo = new Label();
@@ -65,6 +66,7 @@ namespace Umi_Interface.Cadastro.Quarto
             labelModified = new Label();
             dateModified = new DateTimePicker();
             panelCor = new Panel();
+            bsQuarto = new BindingSource(components);
             labelAtivo = new Label();
             tablePai.SuspendLayout();
             tableButton.SuspendLayout();
@@ -76,6 +78,7 @@ namespace Umi_Interface.Cadastro.Quarto
             tableLinha2.SuspendLayout();
             tableLinha3.SuspendLayout();
             tableLinha4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bsQuarto).BeginInit();
             SuspendLayout();
             // 
             // labelAtivo
@@ -553,6 +556,10 @@ namespace Umi_Interface.Cadastro.Quarto
             panelCor.Size = new Size(200, 833);
             panelCor.TabIndex = 4;
             // 
+            // bsQuarto
+            // 
+            bsQuarto.DataSource = typeof(Umi_Library.Class.classQuarto);
+            // 
             // novoQuarto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -582,6 +589,7 @@ namespace Umi_Interface.Cadastro.Quarto
             tableLinha3.PerformLayout();
             tableLinha4.ResumeLayout(false);
             tableLinha4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bsQuarto).EndInit();
             ResumeLayout(false);
 
 
@@ -624,5 +632,6 @@ namespace Umi_Interface.Cadastro.Quarto
         private NumericUpDown numericCapacidade;
         private NumericUpDown numericSolteiro;
         private NumericUpDown numericCasal;
+        private BindingSource bsQuarto;
     }
 }

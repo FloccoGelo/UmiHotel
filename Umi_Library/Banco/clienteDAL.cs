@@ -45,16 +45,16 @@ public class clienteDAL
         }
     }
 
-
     public classCliente BuscarID(int id)
     {
+    
+
         classCliente cliente = null;
         using (SqlConnection cn = new SqlConnection(context.connection))
         {
             string sql = "SELECT * FROM CLIENTE WHERE ID = @id";
             SqlCommand cmd = new SqlCommand(sql, cn);
             cmd.Parameters.AddWithValue("@id", id);
-
             cn.Open();
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
@@ -102,5 +102,7 @@ public class clienteDAL
         };
         return codido;
     }
+
+
 
 }

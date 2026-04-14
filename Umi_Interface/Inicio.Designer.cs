@@ -30,16 +30,17 @@
         {
             btnCliente = new Button();
             btnQuarto = new Button();
+            btnEstadia = new Button();
             SuspendLayout();
             // 
             // btnCliente
             // 
             btnCliente.BackColor = Color.DarkSeaGreen;
-            btnCliente.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnCliente.Font = new Font("Times New Roman", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnCliente.ForeColor = SystemColors.ControlText;
-            btnCliente.Location = new Point(73, 319);
+            btnCliente.Location = new Point(65, 319);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(124, 67);
+            btnCliente.Size = new Size(152, 67);
             btnCliente.TabIndex = 0;
             btnCliente.Text = "Clientes";
             btnCliente.UseVisualStyleBackColor = false;
@@ -48,7 +49,7 @@
             // btnQuarto
             // 
             btnQuarto.BackColor = Color.FromArgb(255, 192, 128);
-            btnQuarto.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQuarto.Font = new Font("Times New Roman", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnQuarto.ForeColor = SystemColors.ControlText;
             btnQuarto.Location = new Point(223, 319);
             btnQuarto.Name = "btnQuarto";
@@ -58,11 +59,24 @@
             btnQuarto.UseVisualStyleBackColor = false;
             btnQuarto.Click += btnQuarto_Click;
             // 
+            // btnEstadia
+            // 
+            btnEstadia.BackColor = SystemColors.ActiveCaption;
+            btnEstadia.Font = new Font("Times New Roman", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnEstadia.Location = new Point(381, 319);
+            btnEstadia.Name = "btnEstadia";
+            btnEstadia.Size = new Size(152, 67);
+            btnEstadia.TabIndex = 2;
+            btnEstadia.Text = "Estadia";
+            btnEstadia.UseVisualStyleBackColor = false;
+            btnEstadia.Click += btnEstadia_Click;
+            // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnEstadia);
             Controls.Add(btnQuarto);
             Controls.Add(btnCliente);
             Name = "Inicio";
@@ -74,5 +88,6 @@
 
         private Button btnCliente;
         private Button btnQuarto;
+        private Button btnEstadia;
     }
 }

@@ -22,11 +22,24 @@ namespace Umi_Interface.Cadastro.Quarto
             _quartoDAL = new quartoDAL(_context);
             InitializeComponent();
         }
+        private int idEdicao;
+        public novoQuarto(int idRecebido)
+        {
+            idEdicao = idRecebido;
+            _quartoDAL = new quartoDAL(_context);
+            InitializeComponent();
+        }
         private void novoQuarto_Load(object sender, EventArgs e)
         {
             comboAtivo.SelectedIndex = 0;
-        }
 
+            if(idEdicao > 0)
+            {
+                preencher();
+            }
+        }
+        // --------------------------
+        // ----------- GERAR CAMPOS
         private string resultAtivo;
         private int resultPreco;
         private string gerarAtivo()
@@ -51,9 +64,10 @@ namespace Umi_Interface.Cadastro.Quarto
         }
 
 
-
-        private classQuarto salvarQuarto()
-        {
+        // -------------------------
+        // ------------- SALVAR
+            private classQuarto salvarQuarto()
+            {
             classQuarto novoQuarto = new classQuarto()
             {
                 Numero = textNumero.Text,
@@ -80,8 +94,9 @@ namespace Umi_Interface.Cadastro.Quarto
             }
                 return novoQuarto;
         }
-        int verificar;
-        private int validarCamposVazios()
+            int verificar;
+
+            private int validarCamposVazios()
         {
             if (
                 textNumero.Text == "" ||
@@ -96,7 +111,48 @@ namespace Umi_Interface.Cadastro.Quarto
             return verificar;
         }
 
+        // -------------------------------
+        // ----------- BINDING PREENCHER
 
+          private void preencher()
+        {
+            var editQua = _quartoDAL.trazerQuarto(idEdicao);
+            bsQuarto.DataSource = editQua;
+
+            textNumero.DataBindings.Clear();
+            comboTipo.DataBindings.Clear();
+            numericCapacidade.DataBindings.Clear();
+            numericSolteiro.DataBindings.Clear();
+            numericCasal.DataBindings.Clear();
+            maskValBase.DataBindings.Clear();
+            maskValAtual.DataBindings.Clear();
+            comboStatus.DataBindings.Clear();
+            textDescricao.DataBindings.Clear();
+            comboAtivo.DataBindings.Clear();
+
+            textNumero.DataBindings.Add("Text", bsQuarto, "Numero");
+            comboTipo.DataBindings.Add("Text", bsQuarto, "Tipo");
+            numericCapacidade.DataBindings.Add("Text", bsQuarto, "Tipo");
+            numericSolteiro.DataBindings.Add("Text", bsQuarto, "NumSolt");
+            numericCasal.DataBindings.Add("Text", bsQuarto, "NumCasal");
+            maskValBase.DataBindings.Add("Text", bsQuarto, "PrecoBase");
+            maskValAtual.DataBindings.Add("Text", bsQuarto, "PrecoAtual");
+            comboStatus.DataBindings.Add("Text", bsQuarto, "Status");
+            textDescricao.DataBindings.Add("Text", bsQuarto, "Descricao");
+            
+            if (editQua.Ativo == "S")
+            {
+                comboAtivo.Text = "Sim";
+            }
+            else
+            {
+                comboAtivo.Text = "Não";
+            }
+                
+            }
+
+        // ----------------------
+        // ------------ BOTOES
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (validarCamposVazios() == 1)
@@ -111,6 +167,16 @@ namespace Umi_Interface.Cadastro.Quarto
                 Numero de camas de solteiro");
 
                 verificar = 0;
+            } else if (bsQuarto.Current is classQuarto qua)
+            {
+                qua.Modified = DateTime.Now;
+                qua.Ativo = gerarAtivo();
+
+                validarCamposVazios();
+                _quartoDAL.Editar(qua);
+
+                MessageBox.Show("Quarto editado com sucesso :)");
+                this.Close();
             } else
             {
                 //classQuarto adicionar = new classQuarto();
@@ -121,7 +187,5 @@ namespace Umi_Interface.Cadastro.Quarto
                 this.Close();
             }
         }
-
-
     }
 }

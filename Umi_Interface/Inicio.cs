@@ -1,4 +1,5 @@
 using Umi_Interface.Cadastro;
+using Umi_Interface.Estadia;
 using Umi_Library.Class;
 using Umi_Interface.Cadastro.Quarto;
 
@@ -21,5 +22,12 @@ public partial class Inicio : Form
     {
         Quarto novoQuarto = new Quarto();
         novoQuarto.ShowDialog();
+    }
+
+    private void btnEstadia_Click(object sender, EventArgs e)
+    {
+        NovaEstadia novo = new NovaEstadia();
+        novo.ShowDialog();
+
     }
 }
