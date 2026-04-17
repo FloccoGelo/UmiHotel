@@ -48,7 +48,7 @@ namespace Umi_Interface.Estadia
                 if(pesquisa.ShowDialog() == DialogResult.OK)
                 {
                     id = pesquisa._idSelecionado;
-                    MessageBox.Show("ID recebido com sucesso " + id);
+                    //MessageBox.Show("ID recebido com sucesso " + id);
                 }
             }
         }

@@ -117,6 +117,7 @@
             textPesquisa.Name = "textPesquisa";
             textPesquisa.Size = new Size(734, 21);
             textPesquisa.TabIndex = 1;
+            textPesquisa.TextChanged += textPesquisa_TextChanged;
             // 
             // dataGrid
             // 

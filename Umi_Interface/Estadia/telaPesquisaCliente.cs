@@ -30,18 +30,33 @@ namespace Umi_Interface.Estadia
             radioNome.Checked = false;
         }
 
+        string pesquisarPor;
+        private void pesquisar()
+        {
+            if (radioCPF.Checked)
+            {
+                pesquisarPor = "cpf";
+            } else
+            {
+                pesquisarPor = "nome";
+            }
+        }
+
         private void listar()
         {
+            string filtro = textPesquisa.Text;
+
             dataGrid.AutoGenerateColumns = false;
-            List<classCliente> lista = _context.Cliente.Select(c => new classCliente
-            {
-                Id = c.Id,
-                CodCli = c.CodCli,
-                CPF = c.CPF,
-                Nome = c.Nome
-            }).ToList();
-            bsLista.DataSource = lista;
-            dataGrid.DataSource = bsLista;
+            List<classCliente> lista = _context.Cliente.
+                Where(c=> c.Nome.Contains(filtro)).
+                Select(c => new classCliente
+                {
+                    Id = c.Id,
+                    CodCli = c.CodCli,
+                    CPF = c.CPF,
+                    Nome = c.Nome
+                }).ToList();
+            dataGrid.DataSource = lista;
         }
 
         public int _idSelecionado;
@@ -58,6 +73,11 @@ namespace Umi_Interface.Estadia
             {
                 MessageBox.Show("ID NAO SELECIONADO :( :( :(");
             }
+        }
+
+        private void textPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            listar();
         }
     }
 }
