@@ -40,34 +40,34 @@
             tableLinha1 = new TableLayoutPanel();
             labelCodigo = new Label();
             labelNome = new Label();
-            textCodigo = new TextBox();
-            textNome = new TextBox();
+            textNome = new Umi_Interface.Componentes.TextBoxNovo(components);
+            textCodigo = new Umi_Interface.Componentes.TextBoxNovo(components);
             tableLinha2 = new TableLayoutPanel();
             labelNasc = new Label();
-            dateNasc = new DateTimePicker();
-            comboSexo = new ComboBox();
             labelSexo = new Label();
             labelCPF = new Label();
-            maskCPF = new MaskedTextBox();
             labelRG = new Label();
-            maskRG = new MaskedTextBox();
+            dateNascimento = new Umi_Interface.Componentes.novoDateTime(components);
+            comboSexo = new Umi_Interface.Componentes.novoComboBox();
+            maskCPF = new Umi_Interface.Componentes.novoMaskedText(components);
+            maskRG = new Umi_Interface.Componentes.novoMaskedText(components);
             tableLinha3 = new TableLayoutPanel();
             labelTell1 = new Label();
-            textTell1 = new TextBox();
             labelTell2 = new Label();
-            textTell2 = new TextBox();
             labelEmail = new Label();
-            textEmail = new TextBox();
+            textTell1 = new Umi_Interface.Componentes.TextBoxNovo(components);
+            textTell2 = new Umi_Interface.Componentes.TextBoxNovo(components);
+            textEmail = new Umi_Interface.Componentes.TextBoxNovo(components);
             tableLinha4 = new TableLayoutPanel();
             labelOBS = new Label();
-            textOBS = new TextBox();
+            textOBS = new Umi_Interface.Componentes.TextBoxNovo(components);
             tableLinha5 = new TableLayoutPanel();
             labelAtivo = new Label();
             labelCreated = new Label();
-            dateCreated = new DateTimePicker();
-            dateModified = new DateTimePicker();
             labelModified = new Label();
-            comboAtivo = new ComboBox();
+            comboAtivo = new Umi_Interface.Componentes.novoComboBox();
+            dateCreated = new Umi_Interface.Componentes.novoDateTime(components);
+            dateModified = new Umi_Interface.Componentes.novoDateTime(components);
             labelTitulo = new Label();
             bsCliente = new BindingSource(components);
             tablePai.SuspendLayout();
@@ -136,7 +136,7 @@
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(94, 39);
             btnSalvar.TabIndex = 1;
-            btnSalvar.Text = "Salvar";
+            btnSalvar.Text = "PegarClass";
             btnSalvar.UseVisualStyleBackColor = false;
             btnSalvar.Click += btnSalvar_Click;
             // 
@@ -190,8 +190,8 @@
             tableLinha1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
             tableLinha1.Controls.Add(labelCodigo, 0, 0);
             tableLinha1.Controls.Add(labelNome, 1, 0);
-            tableLinha1.Controls.Add(textCodigo, 0, 1);
             tableLinha1.Controls.Add(textNome, 1, 1);
+            tableLinha1.Controls.Add(textCodigo, 0, 1);
             tableLinha1.Dock = DockStyle.Fill;
             tableLinha1.Location = new Point(33, 28);
             tableLinha1.Name = "tableLinha1";
@@ -223,27 +223,28 @@
             labelNome.TabIndex = 4;
             labelNome.Text = "Nome: *";
             // 
-            // textCodigo
-            // 
-            textCodigo.BorderStyle = BorderStyle.FixedSingle;
-            textCodigo.Dock = DockStyle.Fill;
-            textCodigo.Enabled = false;
-            textCodigo.Font = new Font("Times New Roman", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textCodigo.Location = new Point(3, 30);
-            textCodigo.Name = "textCodigo";
-            textCodigo.Size = new Size(94, 20);
-            textCodigo.TabIndex = 1;
-            // 
             // textNome
             // 
+            textNome.BackColor = Color.White;
             textNome.BorderStyle = BorderStyle.FixedSingle;
             textNome.Dock = DockStyle.Fill;
-            textNome.Font = new Font("Times New Roman", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textNome.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textNome.Location = new Point(103, 30);
-            textNome.MaxLength = 120;
             textNome.Name = "textNome";
-            textNome.Size = new Size(561, 20);
-            textNome.TabIndex = 3;
+            textNome.Size = new Size(561, 22);
+            textNome.TabIndex = 6;
+            // 
+            // textCodigo
+            // 
+            textCodigo.BackColor = Color.LightBlue;
+            textCodigo.BorderStyle = BorderStyle.FixedSingle;
+            textCodigo.Dock = DockStyle.Fill;
+            textCodigo.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textCodigo.Location = new Point(3, 30);
+            textCodigo.Name = "textCodigo";
+            textCodigo.ReadOnly = true;
+            textCodigo.Size = new Size(94, 22);
+            textCodigo.TabIndex = 7;
             // 
             // tableLinha2
             // 
@@ -251,15 +252,15 @@
             tableLinha2.ColumnCount = 4;
             tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.5427284F));
-            tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.5772133F));
+            tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.6911545F));
+            tableLinha2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.4287872F));
             tableLinha2.Controls.Add(labelNasc, 0, 0);
-            tableLinha2.Controls.Add(dateNasc, 0, 1);
-            tableLinha2.Controls.Add(comboSexo, 1, 1);
             tableLinha2.Controls.Add(labelSexo, 1, 0);
             tableLinha2.Controls.Add(labelCPF, 2, 0);
-            tableLinha2.Controls.Add(maskCPF, 2, 1);
             tableLinha2.Controls.Add(labelRG, 3, 0);
+            tableLinha2.Controls.Add(dateNascimento, 0, 1);
+            tableLinha2.Controls.Add(comboSexo, 1, 1);
+            tableLinha2.Controls.Add(maskCPF, 2, 1);
             tableLinha2.Controls.Add(maskRG, 3, 1);
             tableLinha2.Dock = DockStyle.Fill;
             tableLinha2.Location = new Point(33, 113);
@@ -281,31 +282,6 @@
             labelNasc.TabIndex = 0;
             labelNasc.Text = "Nascimento: *";
             // 
-            // dateNasc
-            // 
-            dateNasc.CustomFormat = "dd/MM/yyyy";
-            dateNasc.Dock = DockStyle.Fill;
-            dateNasc.Font = new Font("Times New Roman", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateNasc.Format = DateTimePickerFormat.Short;
-            dateNasc.Location = new Point(0, 27);
-            dateNasc.Margin = new Padding(0);
-            dateNasc.Name = "dateNasc";
-            dateNasc.Size = new Size(133, 20);
-            dateNasc.TabIndex = 1;
-            // 
-            // comboSexo
-            // 
-            comboSexo.Dock = DockStyle.Fill;
-            comboSexo.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboSexo.FlatStyle = FlatStyle.System;
-            comboSexo.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboSexo.FormattingEnabled = true;
-            comboSexo.Items.AddRange(new object[] { "Masculino", "Feminino", "Outro" });
-            comboSexo.Location = new Point(136, 30);
-            comboSexo.Name = "comboSexo";
-            comboSexo.Size = new Size(127, 23);
-            comboSexo.TabIndex = 2;
-            // 
             // labelSexo
             // 
             labelSexo.AutoSize = true;
@@ -324,41 +300,71 @@
             labelCPF.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelCPF.Location = new Point(269, 12);
             labelCPF.Name = "labelCPF";
-            labelCPF.Size = new Size(90, 15);
+            labelCPF.Size = new Size(111, 15);
             labelCPF.TabIndex = 4;
             labelCPF.Text = "CPF: *";
-            // 
-            // maskCPF
-            // 
-            maskCPF.BorderStyle = BorderStyle.FixedSingle;
-            maskCPF.Dock = DockStyle.Fill;
-            maskCPF.Location = new Point(269, 30);
-            maskCPF.Mask = "000.000.000-00";
-            maskCPF.Name = "maskCPF";
-            maskCPF.Size = new Size(90, 23);
-            maskCPF.TabIndex = 6;
-            maskCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // labelRG
             // 
             labelRG.AutoSize = true;
             labelRG.Dock = DockStyle.Bottom;
             labelRG.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelRG.Location = new Point(365, 12);
+            labelRG.Location = new Point(386, 12);
             labelRG.Name = "labelRG";
-            labelRG.Size = new Size(299, 15);
+            labelRG.Size = new Size(278, 15);
             labelRG.TabIndex = 7;
             labelRG.Text = "RG:";
             // 
+            // dateNascimento
+            // 
+            dateNascimento.BackColor = Color.White;
+            dateNascimento.CalendarFont = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateNascimento.Dock = DockStyle.Fill;
+            dateNascimento.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateNascimento.Format = DateTimePickerFormat.Short;
+            dateNascimento.Location = new Point(3, 30);
+            dateNascimento.Name = "dateNascimento";
+            dateNascimento.Size = new Size(127, 22);
+            dateNascimento.TabIndex = 8;
+            // 
+            // comboSexo
+            // 
+            comboSexo.DisabledBackColor = Color.LightBlue;
+            comboSexo.DisabledForeColor = Color.Black;
+            comboSexo.Dock = DockStyle.Fill;
+            comboSexo.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSexo.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboSexo.FormattingEnabled = true;
+            comboSexo.Items.AddRange(new object[] { "Masculino", "Feminino", "Outros" });
+            comboSexo.Location = new Point(136, 30);
+            comboSexo.Name = "comboSexo";
+            comboSexo.Size = new Size(127, 23);
+            comboSexo.TabIndex = 9;
+            // 
+            // maskCPF
+            // 
+            maskCPF.BackColor = Color.White;
+            maskCPF.BorderStyle = BorderStyle.FixedSingle;
+            maskCPF.Dock = DockStyle.Fill;
+            maskCPF.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            maskCPF.Location = new Point(269, 30);
+            maskCPF.Mask = "00000000000000";
+            maskCPF.Name = "maskCPF";
+            maskCPF.Size = new Size(111, 22);
+            maskCPF.TabIndex = 10;
+            maskCPF.KeyPress += maskCPF_KeyPress;
+            maskCPF.Leave += maskCPF_Leave;
+            // 
             // maskRG
             // 
+            maskRG.BackColor = Color.White;
             maskRG.BorderStyle = BorderStyle.FixedSingle;
-            maskRG.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskRG.Location = new Point(365, 30);
-            maskRG.Mask = "00000-00";
+            maskRG.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            maskRG.Location = new Point(386, 30);
+            maskRG.Mask = "00000000000";
             maskRG.Name = "maskRG";
-            maskRG.Size = new Size(85, 21);
-            maskRG.TabIndex = 8;
+            maskRG.Size = new Size(92, 22);
+            maskRG.TabIndex = 11;
             // 
             // tableLinha3
             // 
@@ -368,10 +374,10 @@
             tableLinha3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tableLinha3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
             tableLinha3.Controls.Add(labelTell1, 0, 0);
-            tableLinha3.Controls.Add(textTell1, 0, 1);
             tableLinha3.Controls.Add(labelTell2, 1, 0);
-            tableLinha3.Controls.Add(textTell2, 1, 1);
             tableLinha3.Controls.Add(labelEmail, 2, 0);
+            tableLinha3.Controls.Add(textTell1, 0, 1);
+            tableLinha3.Controls.Add(textTell2, 1, 1);
             tableLinha3.Controls.Add(textEmail, 2, 1);
             tableLinha3.Dock = DockStyle.Fill;
             tableLinha3.Location = new Point(33, 199);
@@ -393,17 +399,6 @@
             labelTell1.TabIndex = 0;
             labelTell1.Text = "Telefone 1: *";
             // 
-            // textTell1
-            // 
-            textTell1.BorderStyle = BorderStyle.FixedSingle;
-            textTell1.Dock = DockStyle.Top;
-            textTell1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textTell1.Location = new Point(3, 30);
-            textTell1.MaxLength = 20;
-            textTell1.Name = "textTell1";
-            textTell1.Size = new Size(127, 21);
-            textTell1.TabIndex = 1;
-            // 
             // labelTell2
             // 
             labelTell2.AutoSize = true;
@@ -414,17 +409,6 @@
             labelTell2.Size = new Size(127, 15);
             labelTell2.TabIndex = 2;
             labelTell2.Text = "Telefone 2:";
-            // 
-            // textTell2
-            // 
-            textTell2.BorderStyle = BorderStyle.FixedSingle;
-            textTell2.Dock = DockStyle.Fill;
-            textTell2.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textTell2.Location = new Point(136, 30);
-            textTell2.MaxLength = 20;
-            textTell2.Name = "textTell2";
-            textTell2.Size = new Size(127, 21);
-            textTell2.TabIndex = 3;
             // 
             // labelEmail
             // 
@@ -437,16 +421,40 @@
             labelEmail.TabIndex = 4;
             labelEmail.Text = "Email:";
             // 
+            // textTell1
+            // 
+            textTell1.BackColor = Color.White;
+            textTell1.BorderStyle = BorderStyle.FixedSingle;
+            textTell1.Dock = DockStyle.Fill;
+            textTell1.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textTell1.Location = new Point(3, 30);
+            textTell1.Name = "textTell1";
+            textTell1.Size = new Size(127, 22);
+            textTell1.TabIndex = 5;
+            textTell1.KeyPress += textTell1_KeyPress;
+            // 
+            // textTell2
+            // 
+            textTell2.BackColor = Color.White;
+            textTell2.BorderStyle = BorderStyle.FixedSingle;
+            textTell2.Dock = DockStyle.Fill;
+            textTell2.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textTell2.Location = new Point(136, 30);
+            textTell2.Name = "textTell2";
+            textTell2.Size = new Size(127, 22);
+            textTell2.TabIndex = 6;
+            textTell2.KeyPress += textTell2_KeyPress;
+            // 
             // textEmail
             // 
+            textEmail.BackColor = Color.White;
             textEmail.BorderStyle = BorderStyle.FixedSingle;
             textEmail.Dock = DockStyle.Fill;
-            textEmail.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textEmail.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textEmail.Location = new Point(269, 30);
-            textEmail.MaxLength = 120;
             textEmail.Name = "textEmail";
-            textEmail.Size = new Size(395, 21);
-            textEmail.TabIndex = 5;
+            textEmail.Size = new Size(395, 22);
+            textEmail.TabIndex = 7;
             // 
             // tableLinha4
             // 
@@ -478,12 +486,13 @@
             // 
             // textOBS
             // 
+            textOBS.BackColor = Color.White;
             textOBS.BorderStyle = BorderStyle.FixedSingle;
             textOBS.Dock = DockStyle.Fill;
-            textOBS.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textOBS.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textOBS.Location = new Point(3, 24);
             textOBS.Name = "textOBS";
-            textOBS.Size = new Size(661, 21);
+            textOBS.Size = new Size(661, 22);
             textOBS.TabIndex = 1;
             // 
             // tableLinha5
@@ -496,10 +505,10 @@
             tableLinha5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
             tableLinha5.Controls.Add(labelAtivo, 1, 0);
             tableLinha5.Controls.Add(labelCreated, 2, 0);
-            tableLinha5.Controls.Add(dateCreated, 2, 1);
-            tableLinha5.Controls.Add(dateModified, 3, 1);
             tableLinha5.Controls.Add(labelModified, 3, 0);
             tableLinha5.Controls.Add(comboAtivo, 1, 1);
+            tableLinha5.Controls.Add(dateCreated, 2, 1);
+            tableLinha5.Controls.Add(dateModified, 3, 1);
             tableLinha5.Dock = DockStyle.Fill;
             tableLinha5.Location = new Point(33, 359);
             tableLinha5.Name = "tableLinha5";
@@ -532,28 +541,6 @@
             labelCreated.TabIndex = 2;
             labelCreated.Text = "Criado:";
             // 
-            // dateCreated
-            // 
-            dateCreated.Enabled = false;
-            dateCreated.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateCreated.Format = DateTimePickerFormat.Short;
-            dateCreated.Location = new Point(450, 30);
-            dateCreated.Name = "dateCreated";
-            dateCreated.Size = new Size(104, 21);
-            dateCreated.TabIndex = 3;
-            // 
-            // dateModified
-            // 
-            dateModified.CalendarFont = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateModified.Dock = DockStyle.Fill;
-            dateModified.Enabled = false;
-            dateModified.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateModified.Format = DateTimePickerFormat.Short;
-            dateModified.Location = new Point(560, 30);
-            dateModified.Name = "dateModified";
-            dateModified.Size = new Size(104, 21);
-            dateModified.TabIndex = 5;
-            // 
             // labelModified
             // 
             labelModified.AutoSize = true;
@@ -567,12 +554,41 @@
             // 
             // comboAtivo
             // 
+            comboAtivo.DisabledBackColor = Color.LightBlue;
+            comboAtivo.DisabledForeColor = Color.Black;
+            comboAtivo.Dock = DockStyle.Fill;
+            comboAtivo.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboAtivo.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboAtivo.FormattingEnabled = true;
             comboAtivo.Items.AddRange(new object[] { "Sim", "Não" });
             comboAtivo.Location = new Point(340, 30);
             comboAtivo.Name = "comboAtivo";
             comboAtivo.Size = new Size(104, 23);
             comboAtivo.TabIndex = 7;
+            // 
+            // dateCreated
+            // 
+            dateCreated.BackColor = Color.White;
+            dateCreated.Dock = DockStyle.Fill;
+            dateCreated.Enabled = false;
+            dateCreated.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateCreated.Format = DateTimePickerFormat.Short;
+            dateCreated.Location = new Point(450, 30);
+            dateCreated.Name = "dateCreated";
+            dateCreated.Size = new Size(104, 22);
+            dateCreated.TabIndex = 8;
+            // 
+            // dateModified
+            // 
+            dateModified.BackColor = Color.White;
+            dateModified.Dock = DockStyle.Fill;
+            dateModified.Enabled = false;
+            dateModified.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateModified.Format = DateTimePickerFormat.Short;
+            dateModified.Location = new Point(560, 30);
+            dateModified.Name = "dateModified";
+            dateModified.Size = new Size(104, 22);
+            dateModified.TabIndex = 9;
             // 
             // labelTitulo
             // 
@@ -596,12 +612,15 @@
             ClientSize = new Size(915, 833);
             Controls.Add(tablePai);
             Controls.Add(panelCor);
+            KeyPreview = true;
             Margin = new Padding(4, 3, 4, 3);
             MaximumSize = new Size(931, 872);
             MinimumSize = new Size(931, 872);
             Name = "novoCliente";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "novoCliente";
+            FormClosing += novoCliente_FormClosing;
             Load += novoCliente_Load;
             tablePai.ResumeLayout(false);
             tablePai.PerformLayout();
@@ -632,34 +651,34 @@
         private TableLayoutPanel tableLinha1;
         private Label labelCodigo;
         private Label labelNome;
-        private TextBox textCodigo;
-        private TextBox textNome;
         private TableLayoutPanel tableLinha2;
         private Label labelNasc;
-        private DateTimePicker dateNasc;
-        private ComboBox comboSexo;
         private Label labelSexo;
         private Label labelCPF;
-        private MaskedTextBox maskCPF;
         private Label labelRG;
-        private MaskedTextBox maskRG;
         private TableLayoutPanel tableLinha3;
         private Label labelTell1;
-        private TextBox textTell1;
         private Label labelTell2;
-        private TextBox textTell2;
         private Label labelEmail;
-        private TextBox textEmail;
         private TableLayoutPanel tableLinha4;
         private Label labelOBS;
-        private TextBox textOBS;
         private TableLayoutPanel tableLinha5;
         private Label labelAtivo;
         private Label labelCreated;
-        private DateTimePicker dateCreated;
-        private DateTimePicker dateModified;
         private Label labelModified;
         private BindingSource bsCliente;
-        private ComboBox comboAtivo;
+        private Componentes.TextBoxNovo textCodigo;
+        private Componentes.TextBoxNovo textNome;
+        private Componentes.novoDateTime dateNascimento;
+        private Componentes.novoComboBox comboSexo;
+        private Componentes.TextBoxNovo textTell1;
+        private Componentes.TextBoxNovo textTell2;
+        private Componentes.TextBoxNovo textEmail;
+        private Componentes.TextBoxNovo textOBS;
+        private Componentes.novoComboBox comboAtivo;
+        private Componentes.novoDateTime dateCreated;
+        private Componentes.novoDateTime dateModified;
+        private Componentes.novoMaskedText maskCPF;
+        private Componentes.novoMaskedText maskRG;
     }
 }

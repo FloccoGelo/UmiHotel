@@ -45,17 +45,16 @@ public class clienteDAL
         }
     }
 
-    public classCliente BuscarID(int id)
+    public classCliente BuscarID(int Inf)
     {
-    
-
         classCliente cliente = null;
         using (SqlConnection cn = new SqlConnection(context.connection))
         {
-            string sql = "SELECT * FROM CLIENTE WHERE ID = @id";
+            string sql = "SELECT * FROM CLIENTE WHERE ID = @Inf";
             SqlCommand cmd = new SqlCommand(sql, cn);
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@Inf", Inf);
             cn.Open();
+
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
                 if (dr.Read())
@@ -79,11 +78,53 @@ public class clienteDAL
                         Modified = (DateTime)dr["MODIFIED"],
                     };
                 }
-            }
-            ;
+            };
         }
         return cliente;
     }
+
+
+    public List<classCliente> listaClientes(string campo, string Inf, String Ativo)
+    {
+        List<classCliente> clientes = new List<classCliente>();
+        
+        using (SqlConnection cn = new SqlConnection(context.connection))
+        {
+            string sql = $"SELECT * FROM CLIENTE WHERE {campo} LIKE '{Inf}%' AND ATIVO = '{Ativo}'";
+            // salva como s e n
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cn.Open();
+
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    classCliente cliente = new classCliente
+                    {
+                        Id = (int)dr["Id"],
+                        CodCli = (int)dr["CODCLI"],
+                        Nome = dr["NOME"].ToString(),
+                        Nascimento = (DateTime)dr["NASCIMENTO"],
+                        Sexo = dr["SEXO"].ToString(),
+                        CPF = dr["CPF"].ToString(),
+                        RG = dr["RG"].ToString(),
+                        Ativo = dr["ATIVO"].ToString(),
+                        //Ativo = (bool)dr["ATIVO"],
+                        Telefone1 = dr["TELEFONE1"].ToString(),
+                        Telefone2 = dr["TELEFONE2"].ToString(),
+                        Email = dr["EMAIL"].ToString(),
+                        Observacoes = dr["OBSERVACOES"].ToString(),
+                        Created = (DateTime)dr["CREATED"],
+                        Modified = (DateTime)dr["MODIFIED"],
+                    };
+                    clientes.Add(cliente);
+                }
+            };
+        }
+        return clientes;
+    }
+
+
 
     public int gerarCod()
     {

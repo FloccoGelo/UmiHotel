@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Umi_Interface.Estadia
+namespace Umi_Interface.Cadastro
 {
-    public partial class telaPesquisaQuarto : Form
+    public partial class FormaPagamento : Form
     {
-        public telaPesquisaQuarto()
+        public FormaPagamento()
         {
             InitializeComponent();
+        }
+
+        private void FormaPagamento_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

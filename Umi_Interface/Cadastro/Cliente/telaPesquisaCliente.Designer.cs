@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tablePai = new TableLayoutPanel();
             tableOpcoes = new TableLayoutPanel();
             radioCPF = new RadioButton();
             radioNome = new RadioButton();
             textPesquisa = new TextBox();
-            dataGrid = new DataGridView();
+            dataGrid = new Umi_Interface.Componentes.novoDataGrid();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             codCliDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Id = new DataGridViewTextBoxColumn();
-            cPFDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            cPFDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            telefone1DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             bsLista = new BindingSource(components);
             tablePai.SuspendLayout();
             tableOpcoes.SuspendLayout();
@@ -58,14 +61,12 @@
             tablePai.Dock = DockStyle.Fill;
             tablePai.Location = new Point(0, 0);
             tablePai.Name = "tablePai";
-            tablePai.RowCount = 6;
+            tablePai.RowCount = 4;
             tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 317F));
+            tablePai.RowStyles.Add(new RowStyle(SizeType.Percent, 317F));
             tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tablePai.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tablePai.Size = new Size(800, 450);
+            tablePai.Size = new Size(784, 411);
             tablePai.TabIndex = 0;
             // 
             // tableOpcoes
@@ -81,7 +82,7 @@
             tableOpcoes.Name = "tableOpcoes";
             tableOpcoes.RowCount = 1;
             tableOpcoes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableOpcoes.Size = new Size(734, 29);
+            tableOpcoes.Size = new Size(718, 29);
             tableOpcoes.TabIndex = 0;
             // 
             // radioCPF
@@ -115,47 +116,49 @@
             textPesquisa.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textPesquisa.Location = new Point(33, 38);
             textPesquisa.Name = "textPesquisa";
-            textPesquisa.Size = new Size(734, 21);
+            textPesquisa.Size = new Size(718, 21);
             textPesquisa.TabIndex = 1;
             textPesquisa.TextChanged += textPesquisa_TextChanged;
             // 
             // dataGrid
             // 
+            dataGrid.AllowUserToAddRows = false;
+            dataGrid.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightBlue;
+            dataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGrid.AutoGenerateColumns = false;
-            dataGrid.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGrid.BackgroundColor = Color.White;
             dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGrid.Columns.AddRange(new DataGridViewColumn[] { codCliDataGridViewTextBoxColumn, Id, cPFDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn });
+            dataGrid.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, codCliDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, cPFDataGridViewTextBoxColumn, telefone1DataGridViewTextBoxColumn });
             dataGrid.DataSource = bsLista;
             dataGrid.Dock = DockStyle.Fill;
+            dataGrid.Font = new Font("Times New Roman", 10F);
             dataGrid.Location = new Point(33, 68);
+            dataGrid.MultiSelect = false;
             dataGrid.Name = "dataGrid";
+            dataGrid.ReadOnly = true;
+            dataGridViewCellStyle2.BackColor = Color.Beige;
+            dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGrid.Size = new Size(734, 311);
+            dataGrid.Size = new Size(718, 320);
             dataGrid.TabIndex = 2;
             dataGrid.DoubleClick += dataGrid_DoubleClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Visible = false;
             // 
             // codCliDataGridViewTextBoxColumn
             // 
             codCliDataGridViewTextBoxColumn.DataPropertyName = "CodCli";
-            codCliDataGridViewTextBoxColumn.HeaderText = "Codigo";
+            codCliDataGridViewTextBoxColumn.HeaderText = "Cod Cli";
             codCliDataGridViewTextBoxColumn.Name = "codCliDataGridViewTextBoxColumn";
             codCliDataGridViewTextBoxColumn.ReadOnly = true;
             codCliDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            // 
-            // Id
-            // 
-            Id.DataPropertyName = "Id";
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.Resizable = DataGridViewTriState.True;
-            // 
-            // cPFDataGridViewTextBoxColumn
-            // 
-            cPFDataGridViewTextBoxColumn.DataPropertyName = "CPF";
-            cPFDataGridViewTextBoxColumn.HeaderText = "CPF/CNPJ";
-            cPFDataGridViewTextBoxColumn.Name = "cPFDataGridViewTextBoxColumn";
-            cPFDataGridViewTextBoxColumn.ReadOnly = true;
-            cPFDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // nomeDataGridViewTextBoxColumn
             // 
@@ -166,6 +169,20 @@
             nomeDataGridViewTextBoxColumn.ReadOnly = true;
             nomeDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
+            // cPFDataGridViewTextBoxColumn
+            // 
+            cPFDataGridViewTextBoxColumn.DataPropertyName = "CPF";
+            cPFDataGridViewTextBoxColumn.HeaderText = "CPF";
+            cPFDataGridViewTextBoxColumn.Name = "cPFDataGridViewTextBoxColumn";
+            cPFDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // telefone1DataGridViewTextBoxColumn
+            // 
+            telefone1DataGridViewTextBoxColumn.DataPropertyName = "Telefone1";
+            telefone1DataGridViewTextBoxColumn.HeaderText = "Telefone1";
+            telefone1DataGridViewTextBoxColumn.Name = "telefone1DataGridViewTextBoxColumn";
+            telefone1DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // bsLista
             // 
             bsLista.AllowNew = false;
@@ -175,9 +192,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(784, 411);
             Controls.Add(tablePai);
+            MaximumSize = new Size(800, 450);
+            MinimumSize = new Size(800, 450);
             Name = "telaPesquisaCliente";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "pesquisaCliente";
             Load += telaPesquisaCliente_Load;
             tablePai.ResumeLayout(false);
@@ -196,11 +216,12 @@
         private RadioButton radioCPF;
         private RadioButton radioNome;
         private TextBox textPesquisa;
-        private DataGridView dataGrid;
         private BindingSource bsLista;
+        private Componentes.novoDataGrid dataGrid;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn codCliDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn cPFDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cPFDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn telefone1DataGridViewTextBoxColumn;
     }
 }

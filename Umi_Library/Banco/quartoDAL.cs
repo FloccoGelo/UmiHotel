@@ -31,12 +31,15 @@ public class quartoDAL
         _quarto.SaveChanges();
     }
 
-    public void Remover(int cod)
+    public void Remover(int id)
     {
-        if(cod != 0)
+        using (SqlConnection conn = new SqlConnection(context.connection))
         {
-            _quarto.Remove(cod);
-            _quarto.SaveChanges();
+            string sql = "DELETE QUARTO WHERE ID = @idRecebido";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("idRecebido", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 
@@ -75,5 +78,41 @@ public class quartoDAL
             };
         };
         return _quarto;
+    }
+    public List<classQuarto> trazerListaQuarto(string campo, string inf, string ativo)
+    {
+        List<classQuarto> quartos = new List<classQuarto>();
+   
+        using (SqlConnection cn = new SqlConnection(context.connection))
+        {
+            string sql = $"SELECT * FROM QUARTO WHERE {campo} LIKE '{inf}%' AND ATIVO = '{ativo}'";
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cn.Open();
+
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    classQuarto _quarto = new classQuarto()
+                    {
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Numero = dr["NUMERO"].ToString(),
+                        Tipo = dr["TIPO"].ToString(),
+                        Capacidade = (int)dr["CAPACIDADE"],
+                        NumSolt = Convert.ToInt32(dr["NUMSOLT"]),
+                        NumCasal = Convert.ToInt32(dr["NUMCASAL"]),
+                        PrecoBase = Convert.ToDecimal(dr["PRECOBASE"]),
+                        PrecoAtual = Convert.ToDecimal(dr["PRECOATUAL"]),
+                        Ativo = dr["ATIVO"].ToString(),
+                        Status = dr["STATUS"].ToString(),
+                        Descricao = dr["DESCRICAO"].ToString(),
+                        Created = Convert.ToDateTime(dr["CREATED"]),
+                        Modified = Convert.ToDateTime(dr["MODIFIED"])
+                    };
+                    quartos.Add(_quarto);
+                };
+            };
+        };
+        return quartos;
     }
 }

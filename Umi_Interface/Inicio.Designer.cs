@@ -31,6 +31,9 @@
             btnCliente = new Button();
             btnQuarto = new Button();
             btnEstadia = new Button();
+            btnRecebidas = new Button();
+            button1 = new Button();
+            btnContasContabeis = new Button();
             SuspendLayout();
             // 
             // btnCliente
@@ -71,15 +74,53 @@
             btnEstadia.UseVisualStyleBackColor = false;
             btnEstadia.Click += btnEstadia_Click;
             // 
+            // btnRecebidas
+            // 
+            btnRecebidas.BackColor = Color.FromArgb(128, 255, 255);
+            btnRecebidas.Font = new Font("Times New Roman", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnRecebidas.Location = new Point(539, 319);
+            btnRecebidas.Name = "btnRecebidas";
+            btnRecebidas.Size = new Size(152, 67);
+            btnRecebidas.TabIndex = 3;
+            btnRecebidas.Text = "Recebidas";
+            btnRecebidas.UseVisualStyleBackColor = false;
+            btnRecebidas.Click += btnRecebidas_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(486, 158);
+            button1.Name = "button1";
+            button1.Size = new Size(216, 126);
+            button1.TabIndex = 4;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // btnContasContabeis
+            // 
+            btnContasContabeis.BackColor = Color.FromArgb(255, 255, 128);
+            btnContasContabeis.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnContasContabeis.Location = new Point(65, 232);
+            btnContasContabeis.Name = "btnContasContabeis";
+            btnContasContabeis.Size = new Size(175, 67);
+            btnContasContabeis.TabIndex = 5;
+            btnContasContabeis.Text = "Conta-Contabil";
+            btnContasContabeis.UseVisualStyleBackColor = false;
+            btnContasContabeis.Click += btnContasContabeis_Click;
+            // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnContasContabeis);
+            Controls.Add(button1);
+            Controls.Add(btnRecebidas);
             Controls.Add(btnEstadia);
             Controls.Add(btnQuarto);
             Controls.Add(btnCliente);
             Name = "Inicio";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
         }
@@ -89,5 +130,8 @@
         private Button btnCliente;
         private Button btnQuarto;
         private Button btnEstadia;
+        private Button btnRecebidas;
+        private Button button1;
+        private Button btnContasContabeis;
     }
 }

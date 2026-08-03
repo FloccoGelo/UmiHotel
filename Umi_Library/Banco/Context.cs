@@ -13,6 +13,12 @@ namespace Biblioteca.Banco
     {
         public DbSet<classCliente> Cliente { get; set; }
         public DbSet<classQuarto> Quarto { get; set; }
+        public DbSet<classEstadia> Estadia { get; set; }
+        public DbSet<classQuartoEstadia> quartoEstadia { get; set; }
+        public DbSet<classParcela> Parcela  { get; set; }
+        public DbSet<classRecebidos> Recebidas { get; set; }
+        public DbSet<classAReceber> Areceber { get; set; }
+        public DbSet<classContabil> Conta { get; set; }
 
         public string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UmiSGBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -11,41 +11,65 @@ using System.Windows.Forms;
 using Umi_Library;
 using Umi_Library.Banco;
 using Umi_Library.Class;
+using Umi_Interface.Avisos;
+using Microsoft.SqlServer.Server;
 
 namespace Umi_Interface.Cadastro;
 
 public partial class novoCliente : Form
 {
+    int naoValidar = 0;
     int _idEdicao;
     private clienteDAL _Dal;
     Context _context = new Context();
-    // -----------------------------------
+
+    // ===============================================
+    // -    CONSTRUTORES
+    // ===============================================
     public novoCliente()
     {
         InitializeComponent();
         _Dal = new clienteDAL(_context);
     }
-    public novoCliente(int _Idrecebido) // construtor para ediçao do cliente
+
+    public novoCliente(int _Idrecebido)
     {
         InitializeComponent();
         _idEdicao = _Idrecebido;
         _Dal = new clienteDAL(_context);
     }
+
     private void novoCliente_Load(object sender, EventArgs e)
     {
-       comboAtivo.SelectedIndex = 0;
-        if (_idEdicao > 0)
-        {
-            preencher();
-        }
+             comboAtivo.SelectedIndex = 0;
+             if (_idEdicao > 0)
+             {
+                 preencher();
+             }
+            //ordem();
     }
-    // -----------------------------------------------------------------------------------------
-    // ---------------------------------------------------------- GERAR CAMPOS 
-    int codigo = 1;
-    string resultAtivo;
 
-    private void gerarCodigo()
+    /*
+    private void ordem()
     {
+        textCodigo.TabIndex = 0;
+        textNome.TabIndex = 1;
+        dateNascimento.TabIndex = 2;
+        comboSexo.TabIndex = 3;
+        maskCPF.TabIndex = 4;
+        maskRG.TabIndex = 5;
+        textTell1.TabIndex = 6;
+        textTell2.TabIndex = 7;
+        textEmail.TabIndex = 8;
+        textOBS.TabIndex = 9;
+    }
+    */
+    // ===============================================
+    // -    GERAR INFORMAÇOES
+    // ===============================================
+    private int gerarCodigo()
+    {
+        int codigo = 1;
         int ultimo = _Dal.gerarCod();
         if (ultimo == 0)
         {
@@ -55,9 +79,12 @@ public partial class novoCliente : Form
         {
             codigo = ultimo + 1;
         }
+        return codigo;
     }
+
     private string gerarAtivo()
     {
+        string resultAtivo;
         if (comboAtivo.Text == "Sim")
         {
             resultAtivo = "s";
@@ -69,15 +96,17 @@ public partial class novoCliente : Form
         return resultAtivo;
     }
 
-    // -----------------------------------------------------------------------------------------
-    // ---------------------------------------------------------- SALVAR CLIENTE
-    private classCliente Salvar()
+
+    // ===============================================
+    // -    BOTOES - salvar-voltar
+    // ===============================================
+    private classCliente PegarClass()
     {
         classCliente novoCliente = new classCliente()
         {
-            CodCli = codigo,
+            CodCli = gerarCodigo(),
             Nome = textNome.Text,
-            Nascimento = DateTime.Parse(dateNasc.Text),
+            Nascimento = DateTime.Parse(dateNascimento.Text),
             Sexo = comboSexo.Text,
             CPF = maskCPF.Text,
             RG = maskRG.Text,
@@ -87,36 +116,14 @@ public partial class novoCliente : Form
 
             Created = DateTime.Now,
             Modified = DateTime.Now,
-
-            
         };
         novoCliente.Ativo = gerarAtivo();
         return novoCliente;
     }
 
-    private int verificar;
-    public int verificarObrigatorio()
-    {
-       if(
-         textNome.Text == "" || 
-         comboSexo.Text == "" ||
-            maskCPF.Text == "" ||
-            textTell1.Text == "" ||
-            dateNasc.Text == ""
-         )
-        {
-            verificar = 1;
-        }
-       return verificar;
-    }
-    
-    // -----------------------------------------------------------------------------------------
-    // ------------------------------------------------------------------- BOTOES 
     private void btnSalvar_Click(object sender, EventArgs e)
     {
-        // aqui ele valida se, bsCliente.Current tiver um classCliente carregado
-        // se tiver um classCliente carregado, ele vai editar
-        // se não tiver, ele vai adicionar um novo cliente
+        verificarObrigatorio();
         if (verificarObrigatorio() == 1)
         {
             MessageBox.Show(@"Há campos obrigatorios nao preenchidos
@@ -127,24 +134,26 @@ public partial class novoCliente : Form
                 Sexo,
                 CPF,
                 Telefone 01");
-
-            verificar = 0;
         }
         else if (bsCliente.Current is classCliente cli)
         {
+            naoValidar = 1;
             verificarObrigatorio();
             cli.Ativo = gerarAtivo();
             cli.Modified = DateTime.Now;
             _Dal.Editar(cli);
-            MessageBox.Show("Cliente editado com sucesso :)");
+            avisoOk t = new avisoOk("Cliente editado com sucesso :)");
+            t.ShowDialog();
             this.Close();
         }
         else
         {
+            naoValidar = 1;
             gerarCodigo();
-            classCliente salvarCli = Salvar();
+            classCliente salvarCli = PegarClass();
             _Dal.Adicionar(salvarCli);
-            MessageBox.Show("Cliente salvo com sucesso :)");
+            avisoOk t = new avisoOk("Cliente novo salvo com sucesso :)");
+            t.ShowDialog();
             this.Close();
         }
     }
@@ -154,22 +163,20 @@ public partial class novoCliente : Form
         this.Close();
     }
 
-    // -----------------------------------------------------------------------------------------
-    // ---------------------------------------------------------- PREENCHER CAMPOS 
-
-
-
-    // isso aqui traz os dados da funçao BuscarID e passa ao bindingSource
-    // limpa os bindings atuais
-    // e adiciona novos bindings com os campos do banco
+    // ===============================================
+    // -    PREENCHER EDIÇAO
+    // ===============================================
     private void preencher()
     {
+        String campo = "ID";
+        String inf = _idEdicao.ToString();
+
         var editCli = _Dal.BuscarID(_idEdicao);
         bsCliente.DataSource = editCli;
 
         textNome.DataBindings.Clear();
         textCodigo.DataBindings.Clear();
-        dateNasc.DataBindings.Clear();
+        dateNascimento.DataBindings.Clear();
         comboSexo.DataBindings.Clear();
         maskCPF.DataBindings.Clear();
         maskRG.DataBindings.Clear();
@@ -183,7 +190,7 @@ public partial class novoCliente : Form
 
         textCodigo.DataBindings.Add("Text", bsCliente, "CodCli");
         textNome.DataBindings.Add("Text", bsCliente, "Nome");
-        dateNasc.DataBindings.Add("Text", bsCliente, "Nascimento");
+        dateNascimento.DataBindings.Add("Text", bsCliente, "Nascimento");
         comboSexo.DataBindings.Add("Text", bsCliente, "Sexo");
         maskCPF.DataBindings.Add("Text", bsCliente, "CPF");
         maskRG.DataBindings.Add("Text", bsCliente, "RG");
@@ -193,7 +200,7 @@ public partial class novoCliente : Form
         textOBS.DataBindings.Add("Text", bsCliente, "Observacoes");
         dateCreated.DataBindings.Add("Text", bsCliente, "Created");
         dateModified.DataBindings.Add("Text", bsCliente, "Modified");
-
+        mascaraCPF();
         comboAtivo.DataBindings.Add("Text", bsCliente, "Ativo");
         if (editCli.Ativo == "s")
         {
@@ -205,7 +212,125 @@ public partial class novoCliente : Form
         };
     }
 
+    // ========================================
+    // -    KEYPRESS
+    // ========================================
+    private void textTell1_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\r')
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void textTell2_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\r')
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void maskCPF_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '\r')
+        {
+            e.Handled = true;
+        }
+    }
+
+
+
+    // ========================================
+    // -    KEYDOWN
+    // ========================================
+    private void mascaraCPF()
+    {
+        string doc = maskCPF.Text
+            .Replace(".", "")
+            .Replace("-", "")
+            .Replace("/", "")
+            .Replace("_", "") 
+            .Replace(" ", "")  
+            .Trim();
+
+        if (doc.Length == 11)
+        {
+            maskCPF.Mask = "000.000.000-00";
+            maskCPF.Text = doc;
+        }
+        else if (doc.Length == 14)
+        {
+            maskCPF.Mask = "00.000.000/0000-00";
+            maskCPF.Text = doc;
+        }
+        else
+        {
+            maskCPF.Mask = "00000000000000"; 
+            maskCPF.Text = "";               
+        }
+    }
+    private void maskCPF_Leave(object sender, EventArgs e)
+    {
+       mascaraCPF(); 
+    }
+
+    // ===============================================
+    // -    VERIFICAR PREENCHIDOS - FECHAR
+    // ===============================================
+    public int verificarObrigatorio()
+    {
+        int verificar = 0;
+        if (
+            textNome.Text == "" ||
+             comboSexo.Text == "" ||
+             maskCPF.Text == "" ||
+             textTell1.Text == "" ||
+             dateNascimento.Text == ""
+          )
+        {
+            verificar = 1;
+        }
+        return verificar;
+    }
+
+    private int verificarPreenchido()
+    {
+        int u = 0;
+        if (
+            textCodigo.Text != "" ||
+            textNome.Text != "" ||
+            comboSexo.Text != "" ||
+            maskCPF.Text != "" ||
+            maskRG.Text != "" ||
+            textTell1.Text != "" ||
+            textTell2.Text != "" ||
+            textEmail.Text != "" ||
+            textOBS.Text != ""
+            )
+        {
+            u = 1;
+        }
+        return u;
+    }
+    // Perguntar se quer fechar sem salvar
+    private void novoCliente_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        if (verificarPreenchido() == 1 && naoValidar == 0)
+        {
+            using (avisoConfirmar confirmar = new avisoConfirmar("Há campos digitados, deseja sair sem salvar?"))
+            {
+                if (confirmar.ShowDialog() != DialogResult.OK)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+    }
+
 
     // ------- FINAL TOTAL   
+
+
 }
 
